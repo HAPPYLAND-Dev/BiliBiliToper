@@ -1,4 +1,4 @@
-package org.example.utils.items;
+package me.xiaozhangup.bilibilitoper.utils.items;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.example.utils.tools.IString;
+import me.xiaozhangup.bilibilitoper.utils.tools.IString;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

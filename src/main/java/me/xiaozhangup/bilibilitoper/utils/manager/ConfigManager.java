@@ -1,17 +1,16 @@
-package org.example.utils.manager;
+package me.xiaozhangup.bilibilitoper.utils.manager;
 
+import me.xiaozhangup.bilibilitoper.BiliBiliToper;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.example.Main.plugin;
-
 public class ConfigManager {
 
     public static void createFile(String s) {
-        File file = new File(plugin.getDataFolder(), s + ".yml");
+        File file = new File(BiliBiliToper.plugin.getDataFolder(), s + ".yml");
         try {
             file.createNewFile();
         } catch (IOException e) {
@@ -20,9 +19,9 @@ public class ConfigManager {
     }
 
     public static FileConfiguration getConfig(String s) {
-        File file = new File(plugin.getDataFolder(), s + ".yml");
+        File file = new File(BiliBiliToper.plugin.getDataFolder(), s + ".yml");
         if (!file.exists()) {
-            plugin.saveResource(s, false);
+            BiliBiliToper.plugin.saveResource(s, false);
         }
         return YamlConfiguration.loadConfiguration(file);
     }
@@ -31,7 +30,7 @@ public class ConfigManager {
         FileConfiguration fileConfiguration = getConfig(s);
         fileConfiguration.set(node, value);
         try {
-            fileConfiguration.save(new File(plugin.getDataFolder(), s + ".yml"));
+            fileConfiguration.save(new File(BiliBiliToper.plugin.getDataFolder(), s + ".yml"));
         } catch (IOException exception) {
             exception.printStackTrace();
         }

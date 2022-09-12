@@ -1,13 +1,12 @@
-package org.example.utils.manager;
+package me.xiaozhangup.bilibilitoper.utils.manager;
 
+import me.xiaozhangup.bilibilitoper.BiliBiliToper;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-
-import static org.example.Main.plugin;
 
 public class ListenerManager {
 
@@ -27,7 +26,7 @@ public class ListenerManager {
     }
 
     public void register() {
-        listeners.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, plugin));
+        listeners.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, BiliBiliToper.plugin));
         listeners.clear();
     }
 

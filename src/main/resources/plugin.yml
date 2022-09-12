@@ -1,4 +1,9 @@
-name: PluginName
+name: BiliBiliToper
 version: ${project.version}
-api-version: 1.16
-main: org.example.Main
+api-version: 1.19
+main: me.xiaozhangup.bilibilitoper.BiliBiliToper
+authors:
+  - xiaozhangup
+
+libraries:
+  - com.alibaba.fastjson2:fastjson2:2.0.13
