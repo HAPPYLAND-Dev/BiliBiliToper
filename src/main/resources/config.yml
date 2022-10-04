@@ -1,8 +1,8 @@
 commands:
-  - help
-  - say ok!%player%
+  - "give %player% grass"
 reward:
-  - 1
-  - 2
-  - 3
-  - 4
+  - "&7一个&a草"
+  - "&7一个?"
+qqgroup: 1039979008
+serverip: "happylandmc.cc"
+tname: "空岛生存"

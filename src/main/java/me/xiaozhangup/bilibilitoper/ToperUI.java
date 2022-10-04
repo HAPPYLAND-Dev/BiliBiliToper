@@ -28,12 +28,7 @@ public class ToperUI implements Listener, InventoryHolder {
     public static final ItemStack describe = IBuilder.buildItem(Material.BOOK, "&6使用介绍", " ", "&7点击打开查阅");
     public static final ItemStack post = IBuilder.buildItem(Material.OAK_SIGN, "&e添加一个视频", " ", "&7点击添加你上传的视频");
     private static final ItemStack board = IBuilder.getBorder(Material.GRAY_STAINED_GLASS_PANE);
-    private static final Book book = Book.book(
-            Component.text("BiliBiliToper"),
-            Component.text("xiaozhangup"),
-            mm.deserialize("<b><red>视频要求</red></b>\n\n视频必须为您亲自上传,且上传账号必须和您绑定的账号相一致才算做有效的投稿\n\n不需要各种剪辑,只需录制您的日常游戏过程即可,最好配有背景音乐\n\n<b><gold>具体要求请参阅下一页</gold></b>"),
-            mm.deserialize("<b><red>描述要求</red></b>\n\n视频标题需要含有<b>空岛生存</b>\n视频分区需为<b>网络游戏</b>\n视频简介必须含有:<dark_gray>\n\n服务器IP: HAPPYLANDMC.CC\n服务器Q群: 1039979008</dark_gray>\n\n<hover:show_text:'<gray>返回主界面</gray>'><click:run_command:'/bilitoper'><b><gold>返回主界面</gold></b></click></hover>")
-    );
+    public static Book book;
 
     public static void open(Player p) {
 
