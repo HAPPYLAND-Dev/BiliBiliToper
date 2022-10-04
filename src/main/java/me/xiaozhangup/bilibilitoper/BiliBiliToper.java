@@ -1,8 +1,11 @@
 package me.xiaozhangup.bilibilitoper;
 
 import me.xiaozhangup.bilibilitoper.bilibiliapi.BGetter;
+import me.xiaozhangup.bilibilitoper.utils.command.Command;
 import me.xiaozhangup.bilibilitoper.utils.manager.ConfigManager;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,43 +15,30 @@ public class BiliBiliToper extends JavaPlugin {
 
     public static Plugin plugin;
     public static ListenerManager listenerManager = new ListenerManager();
-//    private static Economy econ = null;
-//
-//    public static Economy getEconomy() {
-//        return econ;
-//    }
+    public static MiniMessage mm = MiniMessage.miniMessage();
 
     @Override
     public void onEnable() {
         plugin = this;
-        getLogger().info(BGetter.getVideo("BV1zU4y1r7F1").getString("title"));
 
         saveDefaultConfig();
         reloadConfig();
 
         ConfigManager.createFile("users");
         ConfigManager.createFile("videos");
-//        setupEconomy();
 
-//        listenerManager.addListeners(
-//                /*Your event*/
-//        );
-//        listenerManager.register();
+        listenerManager.addListeners(
+                new ToperUI(), new ChatInput()
+        );
+        listenerManager.register();
 
-//        Command.register("example", (commandSender, command, s, inside) -> {
-//            /*your way*/
-//            return false;
-//        });
+        Command.register("bilitoper", (commandSender, command, s, inside) -> {
+            ToperUI.open((Player) commandSender);
+            return false;
+        });
 
 
 
     }
-
-//    private void setupEconomy() {
-//        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(Economy.class);
-//        if (economyProvider != null) {
-//            econ = economyProvider.getProvider();
-//        }
-//    }
 
 }
