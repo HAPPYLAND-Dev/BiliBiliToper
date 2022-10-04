@@ -2,11 +2,11 @@ package me.xiaozhangup.bilibilitoper.utils.items;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import me.xiaozhangup.bilibilitoper.utils.tools.IString;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import me.xiaozhangup.bilibilitoper.utils.tools.IString;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

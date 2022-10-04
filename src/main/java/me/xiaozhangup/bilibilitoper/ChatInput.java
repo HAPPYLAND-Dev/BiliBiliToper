@@ -62,9 +62,9 @@ public class ChatInput implements Listener {
                     JSONObject video = BGetter.getVideo(jsonObject);
                     if (
                             !video.getString("title").contains("空岛生存") ||
-                            !video.getString("tname").equals("网络游戏") ||
-                            !video.getString("desc").contains("HAPPYLANDMC.CC") ||
-                            !video.getString("desc").contains("1039979008")
+                                    !video.getString("tname").equals("网络游戏") ||
+                                    !video.getString("desc").contains("HAPPYLANDMC.CC") ||
+                                    !video.getString("desc").contains("1039979008")
                     ) {
                         p.sendMessage(nomatch);
                         return;
