@@ -1,0 +1,8 @@
+commands:
+  - help
+  - say ok!%player%
+reward:
+  - 1
+  - 2
+  - 3
+  - 4

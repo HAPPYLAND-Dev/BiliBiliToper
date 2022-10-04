@@ -12,3 +12,4 @@ commands:
   bilitoper:
     aliases:
       - bili
+  bilireload:
