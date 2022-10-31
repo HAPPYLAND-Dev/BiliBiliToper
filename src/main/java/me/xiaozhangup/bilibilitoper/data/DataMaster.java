@@ -20,7 +20,9 @@ public class DataMaster {
     //视频提交数据的存储
     public static void addPostedVideo(Player p, String bvid) {
         String path = p.getUniqueId().toString();
-        ConfigManager.writeConfig("videos", path, ConfigManager.getConfig("videos").getStringList(path).add(bvid));
+        var list = ConfigManager.getConfig("videos").getStringList(path);
+        list.add(bvid);
+        ConfigManager.writeConfig("videos", path, list);
     }
 
     public static int getTotalVideo(Player p) {
