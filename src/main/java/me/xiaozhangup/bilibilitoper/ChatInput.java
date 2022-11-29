@@ -63,8 +63,7 @@ public class ChatInput implements Listener {
                     if (
                             !video.getString("title").contains(BiliBiliToper.tname) ||
                                     !video.getString("tname").equals("网络游戏") ||
-                                    !video.getString("desc").contains(BiliBiliToper.qqgroup) ||
-                                    !video.getString("desc").contains(BiliBiliToper.serverip)
+                                    !video.getString("desc").contains(BiliBiliToper.qqgroup)
                     ) {
                         p.sendMessage(nomatch);
                         return;
