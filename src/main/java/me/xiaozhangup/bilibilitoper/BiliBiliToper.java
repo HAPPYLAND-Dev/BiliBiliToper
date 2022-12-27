@@ -27,6 +27,8 @@ public class BiliBiliToper extends JavaPlugin {
     public static String qqgroup;
     public static String serverip;
     public static String tname;
+    public static int cooldown;
+    public static List<String> alias;
 
 
     public static void loadConfig() {
@@ -36,6 +38,8 @@ public class BiliBiliToper extends JavaPlugin {
         qqgroup = config.getString("qqgroup");
         serverip = config.getString("serverip");
         tname = config.getString("tname");
+        alias = config.getStringList("alias");
+        cooldown = config.getInt("cooldown");
         ToperUI.book = Book.book(
                 Component.text("BiliBiliToper"),
                 Component.text("xiaozhangup"),

@@ -27,6 +27,7 @@ public class ToperUI implements Listener, InventoryHolder {
     public static final @NotNull Component postvideo = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> 请输入你已通过稿件的<red>BV号</red><yellow>或输入 cancel 取消</yellow>");
     public static final ItemStack describe = IBuilder.buildItem(Material.BOOK, "&6使用介绍", " ", "&7点击打开查阅");
     public static final ItemStack post = IBuilder.buildItem(Material.OAK_SIGN, "&e添加一个视频", " ", "&7点击添加你上传的视频");
+    public static final @NotNull Component cooldown = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <red>帐号绑定冷却中! 你只能每 " + BiliBiliToper.cooldown + " 小时绑定一次帐号!</red>");
     private static final ItemStack board = IBuilder.getBorder(Material.GRAY_STAINED_GLASS_PANE);
     public static Book book;
 
@@ -63,8 +64,15 @@ public class ToperUI implements Listener, InventoryHolder {
                 }
                 case 13 -> {
                     p.closeInventory();
-                    p.sendMessage(bindacc);
-                    ChatInput.state.put(p, 1);
+                    if (!ChatInput.cool.containsKey(p)) {
+                        p.sendMessage(bindacc);
+                        ChatInput.state.put(p, 1);
+                    } else if ((System.currentTimeMillis() - ChatInput.cool.get(p)) < (long) BiliBiliToper.cooldown * 3600000) {
+                        p.sendMessage(cooldown);
+                    } else {
+                        p.sendMessage(bindacc);
+                        ChatInput.state.put(p, 1);
+                    }
                 }
                 case 15 -> {
                     p.closeInventory();

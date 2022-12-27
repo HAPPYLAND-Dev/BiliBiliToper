@@ -6,3 +6,7 @@ reward:
 qqgroup: 1039979008
 serverip: "happylandmc.cc"
 tname: "空岛生存"
+cooldown: 24
+alias:
+  - "空岛"
+  - "生存"

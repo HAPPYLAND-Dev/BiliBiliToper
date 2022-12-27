@@ -24,6 +24,7 @@ public class ChatInput implements Listener {
     public static final @NotNull Component cancel = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> 已取消操作");
     public static final @NotNull Component donepost = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>你的视频提交成功</yellow>");
     public static HashMap<Player, Integer> state = new HashMap<>();
+    public static HashMap<Player, Long> cool = new HashMap<>();
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
@@ -41,6 +42,7 @@ public class ChatInput implements Listener {
                     state.remove(p);
                     DataMaster.setPlayerAccount(p, message);
                     p.sendMessage(mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> 已成功绑定账号 " + message));
+                    cool.put(p, System.currentTimeMillis());
                 }
                 case 2 -> {
                     //debug
@@ -60,12 +62,7 @@ public class ChatInput implements Listener {
                         return;
                     }
                     JSONObject video = BGetter.getVideo(jsonObject);
-                    if (
-                            !video.getString("title").contains(BiliBiliToper.tname) ||
-                                    !video.getString("tname").equals("网络游戏") ||
-                                    !video.getString("desc").contains(BiliBiliToper.qqgroup) ||
-                                    !video.getString("desc").contains(BiliBiliToper.serverip)
-                    ) {
+                    if (!check(video)) { //皮飞
                         p.sendMessage(nomatch);
                         return;
                     }
@@ -81,5 +78,28 @@ public class ChatInput implements Listener {
             }
         }
     }
+
+    public static boolean check(JSONObject video) {
+        if (
+                        !video.getString("tname").equals("网络游戏") ||
+                        !video.getString("desc").contains(BiliBiliToper.qqgroup) ||
+                        !video.getString("desc").contains(BiliBiliToper.serverip)
+        ) {
+            return false;
+        } else {
+            final boolean[] ali = {false};
+            String title = video.getString("title");
+            BiliBiliToper.alias.forEach(s -> {
+                if (title.contains(s)) {
+                    ali[0] = true;
+                }
+            });
+            if (ali[0]) return true;
+            return video.getString("title").contains(BiliBiliToper.tname);
+        }
+    }
+
+    //code
+    //!video.getString("title").contains(BiliBiliToper.tname) && !video.getString("title").contains("111111"))
 
 }
