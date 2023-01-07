@@ -81,7 +81,7 @@ public class ChatInput implements Listener {
 
     public static boolean check(JSONObject video) {
         if (
-                        !video.getString("tname").equals("网络游戏") ||
+                        !video.getString("tname").equals(BiliBiliToper.part) ||
                         !video.getString("desc").contains(BiliBiliToper.qqgroup) ||
                         !video.getString("desc").contains(BiliBiliToper.serverip)
         ) {
