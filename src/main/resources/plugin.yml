@@ -1,6 +1,6 @@
 name: BiliBiliToper
 version: ${project.version}
-api-version: 1.19
+api-version: 1.17
 main: me.xiaozhangup.bilibilitoper.BiliBiliToper
 authors:
   - xiaozhangup
