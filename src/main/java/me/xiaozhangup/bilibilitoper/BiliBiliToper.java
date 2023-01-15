@@ -1,5 +1,6 @@
 package me.xiaozhangup.bilibilitoper;
 
+import me.xiaozhangup.bilibilitoper.expansion.BiliBiliToperExpansion;
 import me.xiaozhangup.bilibilitoper.utils.command.Command;
 import me.xiaozhangup.bilibilitoper.utils.manager.ConfigManager;
 import me.xiaozhangup.bilibilitoper.utils.manager.ListenerManager;
@@ -30,6 +31,8 @@ public class BiliBiliToper extends JavaPlugin {
     public static String part;
     public static int cooldown;
     public static List<String> alias;
+
+    private BiliBiliToperExpansion expansion;
 
 
     public static void loadConfig() {
@@ -87,6 +90,12 @@ public class BiliBiliToper extends JavaPlugin {
             return true;
         });
 
+        expansion = new BiliBiliToperExpansion(this);
+        expansion.register();
     }
 
+    @Override
+    public void onDisable() {
+        expansion.unregister();
+    }
 }
