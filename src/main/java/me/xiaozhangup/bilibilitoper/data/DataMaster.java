@@ -21,7 +21,7 @@ public class DataMaster {
     public static void addPostedVideo(Player p, String bvid) {
         String path = p.getUniqueId().toString();
         var list = ConfigManager.getConfig("videos").getStringList(path);
-        list.add(bvid);
+        list.add(bvid + ":" + System.currentTimeMillis());
         ConfigManager.writeConfig("videos", path, list);
     }
 
