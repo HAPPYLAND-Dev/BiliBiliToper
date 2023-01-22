@@ -39,4 +39,9 @@ public class BGetter {
     public static Integer getDuration(JSONObject base) {
         return getVideo(base).getInteger("duration");
     }
+
+    @NotNull
+    public static Long getPubdate(JSONObject base) {
+        return getVideo(base).getLong("pubdate");
+    }
 }
