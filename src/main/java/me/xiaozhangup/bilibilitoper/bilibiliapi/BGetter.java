@@ -10,7 +10,7 @@ public class BGetter {
 
     @Nullable
     public static JSONObject getBaseJson(String bvid) {
-        String api = IString.getStringFromURL("http://api.bilibili.com/x/web-interface/view?&bvid=" + bvid);
+        String api = IString.getStringFromURL("https://api.bilibili.com/x/web-interface/view?&bvid=" + bvid);
 
         if (api == null) return null;
         JSONObject data = JSON.parseObject(api);

@@ -8,7 +8,7 @@ public class Get {
 
     @Test
     public void get() {
-        String bvid = "BV1zU4y1r7F2";
+        String bvid = "BV1ns41137oP";
         JSONObject jsonObject = BGetter.getBaseJson(bvid);
         System.out.println(jsonObject);
         System.out.println(BGetter.getVideo(jsonObject).getString("title"));

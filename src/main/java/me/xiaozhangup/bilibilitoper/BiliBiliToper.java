@@ -23,6 +23,7 @@ public class BiliBiliToper extends JavaPlugin {
     public static ListenerManager listenerManager = new ListenerManager();
     public static MiniMessage mm = MiniMessage.miniMessage();
     public static final @NotNull Component reloaded = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> 配置文件已重载");
+    public static final @NotNull Component execFail = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <red>控制台无法执行此命令</red>");
     public static List<String> commands = new ArrayList<>();
     public static List<String> reward = new ArrayList<>();
     public static String qqgroup;
@@ -79,11 +80,15 @@ public class BiliBiliToper extends JavaPlugin {
         listenerManager.register();
 
         Command.register("bilitoper", (commandSender, command, s, inside) -> {
-            ToperUI.open((Player) commandSender);
-            return false;
+            if (commandSender instanceof Player player) {
+                ToperUI.open(player);
+                return true;
+            }
+            commandSender.sendMessage(execFail);
+            return true;
         });
         Command.register("bilireload", (commandSender, command, s, strings) -> {
-            if (!commandSender.isOp()) return false;
+            if (!commandSender.isOp()) return true;
             reloadConfig();
             loadConfig();
             commandSender.sendMessage(reloaded);

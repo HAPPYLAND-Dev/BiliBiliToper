@@ -6,7 +6,7 @@
 
     <groupId>me.xiaozhangup.bilibilitoper</groupId>
     <artifactId>BiliBiliToper</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.4-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
