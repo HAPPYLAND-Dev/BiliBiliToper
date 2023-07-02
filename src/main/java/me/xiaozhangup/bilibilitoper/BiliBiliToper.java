@@ -49,8 +49,8 @@ public class BiliBiliToper extends JavaPlugin {
         ToperUI.book = Book.book(
                 Component.text("BiliBiliToper"),
                 Component.text("xiaozhangup"),
-                mm.deserialize("<b><red>视频要求</red></b>\n\n视频必须为您亲自上传,且上传账号必须和您绑定的账号相一致才算做有效的投稿\n\n不需要各种剪辑,只需录制您的日常游戏过程即可,最好配有背景音乐\n\n<b><gold>具体要求请参阅下一页</gold></b>"),
-                mm.deserialize("<b><red>描述要求</red></b>\n\n视频标题需要含有<b>" + tname + "</b>\n视频分区需为<b>" + BiliBiliToper.part + "</b>\n视频简介必须含有:<dark_gray>\n\n服务器IP: " + serverip + "\n服务器Q群: " + qqgroup + "</dark_gray>\n\n<hover:show_text:'<gray>返回主界面</gray>'><click:run_command:'/bilitoper'><b><gold>返回主界面</gold></b></click></hover>")
+                mm.deserialize("<b><red>视频要求</red></b>\n\n视频必须为您亲自上传,且上传账号必须和您绑定的账号相一致才算做有效的投稿\n\n不需要各种剪辑,只需录制您的日常游戏过程即可,最好配有背景音乐\n\n如果录制了开麦带解说的高质量视频,请联系服主领取额外奖励\n\n<b><gold>具体要求请参阅下一页</gold></b>"),
+                mm.deserialize("<b><red>描述要求</red></b>\n\n视频标题需要含有<b>" + tname + "</b>\n视频分区需为<b>" + BiliBiliToper.part + "</b>\n视频时长需大于<b>20分钟</b>\n视频简介必须含有:<b>\n服务器IP: " + serverip + "\n服务器Q群: " + qqgroup + "</b>\n\n视频发布时间小于<b>24小时</b>\n领取奖励间隔<b>48小时</b>\n\n<hover:show_text:'<gray>返回主界面</gray>'><click:run_command:'/bilitoper'><b><gold>返回主界面</gold></b></click></hover>")
         );
     }
 

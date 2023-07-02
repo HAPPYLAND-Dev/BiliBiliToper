@@ -4,6 +4,7 @@ import me.xiaozhangup.bilibilitoper.utils.manager.ConfigManager;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Map;
 
 public class DataMaster {
 
@@ -17,11 +18,16 @@ public class DataMaster {
         return ConfigManager.getConfig("users").getString(p.getUniqueId().toString());
     }
 
+    public static Map<String,Object> getUserList() {
+        return ConfigManager.getConfig("users").getValues(false);
+    }
+
+
     //视频提交数据的存储
     public static void addPostedVideo(Player p, String bvid) {
         String path = p.getUniqueId().toString();
         var list = ConfigManager.getConfig("videos").getStringList(path);
-        list.add(bvid);
+        list.add(bvid + ":" + System.currentTimeMillis());
         ConfigManager.writeConfig("videos", path, list);
     }
 
