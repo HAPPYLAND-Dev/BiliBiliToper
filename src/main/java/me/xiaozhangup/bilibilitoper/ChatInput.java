@@ -23,10 +23,10 @@ public class ChatInput implements Listener {
     public static final @NotNull Component accnomatch = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>视频发布者账号和绑定账号不一致!</yellow>");
     public static final @NotNull Component bound = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>视频发布者账号已被绑定!</yellow>");
     public static final @NotNull Component cantread = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <red>服务器遇到错误无法获取数据,请重试!</red>");
-    public static final @NotNull Component posted = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>你投稿过这个视频了!</yellow>");
-    public static final @NotNull Component rubbish = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>该视频质量过低! 时长需满足20分钟</yellow>");
-    public static final @NotNull Component stock = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>该视频属于库存视频(发布日期超过1天)! 请你按照时间间隔上传视频不然宣传效果太差! 谢谢理解支持!</yellow>");
-    public static final @NotNull Component toofast = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>你太快了!要做一个持久的人! 距离上次投稿未达48小时</yellow>");
+    public static final @NotNull Component posted = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>你已经投稿过这个视频了!</yellow>");
+    public static final @NotNull Component rubbish = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>该视频质量过低! 时长需满足20分钟</yellow>"); // TODO: 2023/7/2 允许自定义视频时间
+    public static final @NotNull Component stock = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>该视频属于库存视频(发布日期超过1天)! 请勿投稿此类库存视频!</yellow>"); // TODO: 2023/7/2 允许自定义库存时间
+    public static final @NotNull Component toofast = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>投稿过于频繁! 距离上次投稿未达48小时</yellow>"); // TODO: 2023/7/2 允许自定义间隔时间
     public static final @NotNull Component cancel = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> 已取消操作");
     public static final @NotNull Component donepost = mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> <yellow>你的视频提交成功</yellow>");
     public static HashMap<Player, Integer> state = new HashMap<>();
@@ -78,7 +78,7 @@ public class ChatInput implements Listener {
                         p.sendMessage(posted);
                         return;
                     }
-                    if (System.currentTimeMillis() - lastTime < 172800000) {
+                    if (System.currentTimeMillis() - lastTime < 172800000) { // TODO: 2023/7/2 Custom
                         p.sendMessage(toofast);
                         return;
                     }
@@ -94,8 +94,7 @@ public class ChatInput implements Listener {
                         return;
                     }
 
-                    //视频上传时间不能超过24小时
-                    if (System.currentTimeMillis() - BGetter.getPubdate(jsonObject) > 86400000) {
+                    if (System.currentTimeMillis() - BGetter.getPubdate(jsonObject) > 86400000) { // TODO: 2023/7/2 Custom
                         p.sendMessage(stock);
                         return;
                     }
@@ -106,13 +105,12 @@ public class ChatInput implements Listener {
                     }
 
                     JSONObject video = BGetter.getVideo(jsonObject);
-                    if (!check(video)) { //皮飞
+                    if (!check(video)) {
                         p.sendMessage(nomatch);
                         return;
                     }
                     DataMaster.addPostedVideo(p, message);
                     p.sendMessage(donepost);
-                    //todo 奖赏代码/和全服广播
                     BiliBiliToper.runReward(p);
                     Bukkit.broadcast(mm.deserialize(""));
                     Bukkit.broadcast(mm.deserialize("<dark_gray>[<color:#00a1d6>哔哩</color>]</dark_gray> 玩家<yellow>" + p.getName() + "</yellow>成功投稿了一次视频!"));
